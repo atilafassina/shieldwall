@@ -8,9 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@solidjs/start':
+        specifier: ^1.0.8
+        version: 1.0.8(solid-js@1.9.1)(vinxi@0.4.3(@types/node@22.7.4)(ioredis@5.4.1)(magicast@0.3.5)(terser@5.34.1))(vite@5.4.8(@types/node@22.7.4)(terser@5.34.1))
       csp-header:
         specifier: ^5.2.1
         version: 5.2.1
+      vinxi:
+        specifier: ^0.4.3
+        version: 0.4.3(@types/node@22.7.4)(ioredis@5.4.1)(magicast@0.3.5)(terser@5.34.1)
     devDependencies:
       '@eslint-community/eslint-plugin-eslint-comments':
         specifier: ^4.4.0
@@ -21,9 +27,6 @@ importers:
       '@release-it/conventional-changelog':
         specifier: ^8.0.2
         version: 8.0.2(release-it@17.7.0(typescript@5.6.2))
-      '@solidjs/start':
-        specifier: ^1.0.8
-        version: 1.0.8(solid-js@1.9.1)(vinxi@0.4.3(@types/node@22.7.4)(ioredis@5.4.1)(magicast@0.3.5)(terser@5.34.1))(vite@5.4.8(@types/node@22.7.4)(terser@5.34.1))
       '@types/eslint-plugin-markdown':
         specifier: ^2.0.2
         version: 2.0.2
@@ -99,9 +102,6 @@ importers:
       typescript-eslint:
         specifier: ^8.8.0
         version: 8.8.0(eslint@9.12.0(jiti@2.3.1))(typescript@5.6.2)
-      vinxi:
-        specifier: ^0.4.3
-        version: 0.4.3(@types/node@22.7.4)(ioredis@5.4.1)(magicast@0.3.5)(terser@5.34.1)
       vitest:
         specifier: ^2.1.2
         version: 2.1.2(@types/node@22.7.4)(jsdom@25.0.1)(terser@5.34.1)
