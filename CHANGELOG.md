@@ -1,3 +1,9 @@
+## [0.1.3](https://github.com/atilafassina/shieldwall/compare/0.1.2...0.1.3) (2024-10-05)
+
+### Bug Fixes
+
+- add `UNSAFE_INLINE` to Dev CSP - `script-src` ([#2](https://github.com/atilafassina/shieldwall/issues/2)) ([4acf88e](https://github.com/atilafassina/shieldwall/commit/4acf88e4f79cd6b4f5807eda3e80b33c93fb238a))
+
 ## [0.1.2](https://github.com/atilafassina/shieldwall/compare/0.1.1...0.1.2) (2024-10-05)
 
 ### Bug Fixes
