@@ -41,6 +41,11 @@ export default tseslint.config(
 			},
 		},
 		rules: {
+			"@typescript-eslint/no-unsafe-assignment": "off",
+			"@typescript-eslint/no-redundant-type-constituents": "off",
+			"@typescript-eslint/no-unsafe-member-access": "off",
+			"@typescript-eslint/no-unsafe-call": "off",
+
 			// These on-by-default rules don't work well for this repo and we like them off.
 			"no-constant-condition": "off",
 
@@ -73,7 +78,6 @@ export default tseslint.config(
 			...vitest.configs.recommended.rules,
 
 			// These on-by-default rules aren't useful in test files.
-			"@typescript-eslint/no-unsafe-assignment": "off",
 			"@typescript-eslint/no-unsafe-call": "off",
 		},
 	},
