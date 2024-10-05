@@ -12,9 +12,9 @@
 		"email": "atila@fassina.eu"
 	},
 	"type": "module",
-	"main": "./lib/index.js",
+	"main": "./dist/index.js",
 	"files": [
-		"lib/",
+		"dist/",
 		"package.json",
 		"LICENSE.md",
 		"README.md"
