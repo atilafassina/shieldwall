@@ -1,3 +1,9 @@
+## [0.1.2](https://github.com/atilafassina/shieldwall/compare/0.1.1...0.1.2) (2024-10-05)
+
+### Bug Fixes
+
+- avoid `nonces` in development ([#1](https://github.com/atilafassina/shieldwall/issues/1)) ([7b35675](https://github.com/atilafassina/shieldwall/commit/7b3567512885ac866d7954040b86953241c9519b))
+
 ## [0.1.1](https://github.com/atilafassina/shieldwall/compare/0.1.0...0.1.1) (2024-10-05)
 
 ### Bug Fixes
