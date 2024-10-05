@@ -1,4 +1,4 @@
-import { CSPDirectives } from "csp-header";
+import { type CSPDirectives } from "csp-header";
 
 export interface CSPHeaderConfig {
 	dev?: CSP;

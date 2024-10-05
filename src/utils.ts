@@ -1,5 +1,5 @@
 import { HEADER_NAMES } from "./defaults.js";
-import { HeaderNames } from "./types.js";
+import { type HeaderNames } from "./types.js";
 
 export function deepMerge(
 	target: Record<string, unknown>,

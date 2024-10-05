@@ -45,6 +45,8 @@ export default tseslint.config(
 			"@typescript-eslint/no-redundant-type-constituents": "off",
 			"@typescript-eslint/no-unsafe-member-access": "off",
 			"@typescript-eslint/no-unsafe-call": "off",
+			"@typescript-eslint/no-unsafe-argument": "off",
+			"@typescript-eslint/no-unnecessary-type-assertion": "off",
 
 			// These on-by-default rules don't work well for this repo and we like them off.
 			"no-constant-condition": "off",

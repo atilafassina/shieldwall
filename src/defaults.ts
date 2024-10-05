@@ -1,5 +1,5 @@
-import { DEV_DEFAULT_CSP, PROD_DEFAULT_CSP } from "./lib/csp/csp.js";
-import { HeaderNames, SecHeaders } from "./types.js";
+import { DEV_DEFAULT_CSP, PROD_DEFAULT_CSP } from "./lib/csp.js";
+import { type HeaderNames } from "./types.js";
 
 export const HEADER_NAMES: HeaderNames = {
 	hsts: "Strict-Transport-Security",

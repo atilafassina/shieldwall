@@ -1,6 +1,7 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
+	name: "shieldwall",
 	bundle: false,
 	clean: true,
 	dts: true,

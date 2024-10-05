@@ -1,8 +1,8 @@
 import crypto from "node:crypto";
 import { DEFAULT_HEADERS, HEADER_NAMES } from "./defaults.js";
-import { SecHeaders } from "./types.js";
+import { type SecHeaders } from "./types.js";
 import { keyIsHeader } from "./utils.js";
-import { generateCSP } from "./lib/csp/csp.js";
+import { generateCSP } from "./lib/csp.js";
 import { type FetchEvent } from "@solidjs/start/server";
 import { appendHeader } from "vinxi/http";
 
