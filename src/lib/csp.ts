@@ -50,7 +50,8 @@ export const addNonceToDirectives = (
 };
 
 export function generateCSP(cspOptions: CSP["value"], nonceString?: string) {
-  const directives = nonceString ? addNonceToDirectives(cspOptions, nonceString) : cspOptions;
+  const isDev = process.env.NODE_ENV === "development";
+  const directives = nonceString && !isDev ? addNonceToDirectives(cspOptions, nonceString) : cspOptions;
 
   if (Object.prototype.hasOwnProperty.call(directives,"report-uri")) {
     const reportUri = directives["report-uri"];
