@@ -1,3 +1,9 @@
+## [0.1.1](https://github.com/atilafassina/shieldwall/compare/0.1.0...0.1.1) (2024-10-05)
+
+### Bug Fixes
+
+- remove run task from CI ([a8307e4](https://github.com/atilafassina/shieldwall/commit/a8307e417463fa75791d554ee7c2a267d718d4a0))
+
 # 0.1.0 (2024-10-05)
 
 ### Bug Fixes
