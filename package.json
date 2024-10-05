@@ -69,5 +69,8 @@
 	"peerDependencies": {
 		"@solidjs/start": "^1.0.8",
 		"vinxi": "^0.4.3"
+	},
+	"publishConfig": {
+		"provenance": true
 	}
 }
