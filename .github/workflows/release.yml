@@ -16,7 +16,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         uses: JoshuaKGoldberg/release-it-action@v0.2.2
 
-name: Release
+name: 📡 Publish to NPM
 
 on:
   push:

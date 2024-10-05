@@ -1,10 +1,10 @@
-import crypto from "node:crypto";
-import { DEFAULT_HEADERS, HEADER_NAMES } from "./defaults.js";
+import { type FetchEvent } from "@solidjs/start/server";
 import { type SecHeaders } from "./types.js";
+import crypto from "node:crypto";
+import { appendHeader } from "vinxi/http";
+import { DEFAULT_HEADERS, HEADER_NAMES } from "./defaults.js";
 import { keyIsHeader } from "./utils.js";
 import { generateCSP } from "./lib/csp.js";
-import { type FetchEvent } from "@solidjs/start/server";
-import { appendHeader } from "vinxi/http";
 
 export const secureRequest = (options?: SecHeaders) => (event: FetchEvent) => {
 	const settings: SecHeaders = { ...DEFAULT_HEADERS, ...options };

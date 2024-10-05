@@ -1,5 +1,27 @@
-import { DEV_DEFAULT_CSP, PROD_DEFAULT_CSP } from "./lib/csp.js";
-import { type HeaderNames } from "./types.js";
+import { SELF, UNSAFE_EVAL, UNSAFE_INLINE } from "csp-header";
+import { CSP, type HeaderNames } from "./types.js";
+
+export const PROD_DEFAULT_CSP: CSP["value"] = {
+	"default-src": [SELF],
+	"frame-src": [SELF],
+	"script-src": [SELF],
+	"style-src": [SELF],
+	"style-src-elem": [SELF, UNSAFE_INLINE],
+	"connect-src": [SELF],
+	"img-src": [SELF],
+	"object-src": [],
+};
+
+export const DEV_DEFAULT_CSP: CSP["value"] = {
+	"default-src": [SELF],
+	"frame-src": [SELF],
+	"script-src": [SELF, UNSAFE_EVAL],
+	"style-src": [SELF],
+	"style-src-elem": [SELF, UNSAFE_INLINE],
+	"connect-src": [SELF, "ws://localhost:*"],
+	"img-src": [SELF],
+	"object-src": [],
+};
 
 export const HEADER_NAMES: HeaderNames = {
 	hsts: "Strict-Transport-Security",
