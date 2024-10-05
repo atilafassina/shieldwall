@@ -1,10 +1,10 @@
 {
 	"name": "shieldwall",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "Security for your Fullstack App 🛡️",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/atilafassina/shieldwall.git"
+		"url": "git+https://github.com/atilafassina/shieldwall.git"
 	},
 	"license": "MIT",
 	"author": {
