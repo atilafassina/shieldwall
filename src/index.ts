@@ -3,51 +3,52 @@ import { type SecHeaders } from "./types.js";
 import crypto from "node:crypto";
 import { appendHeader } from "vinxi/http";
 import { DEFAULT_HEADERS, HEADER_NAMES } from "./defaults.js";
-import { keyIsHeader } from "./utils.js";
-import { generateCSP } from "./lib/csp.js";
+import { deepFallbackMerge, keyIsHeader } from "./utils.js";
+import { chooseCSP, generateCSP } from "./lib/csp.js";
 
-export const secureRequest = (options?: SecHeaders) => (event: FetchEvent) => {
-	const settings: SecHeaders = { ...DEFAULT_HEADERS, ...options };
-
-	const chooseCSP = () => {
-		if (!settings.csp) {
-			return;
-		}
-		if (process.env.NODE_ENV === "development") {
-			return settings.csp.dev || settings.csp.prod;
-		} else {
-			return settings.csp.prod;
-		}
+const h3Attacher =
+	(event: FetchEvent["nativeEvent"]) => (key: string, headerValue: string) => {
+		appendHeader(event, key, headerValue);
 	};
 
-	const nonce = crypto.randomBytes(16).toString("base64");
-	event.locals.nonce = nonce;
-
+function attachSecHeaders(
+	settings: SecHeaders,
+	attacher: ReturnType<typeof h3Attacher>,
+) {
 	const entries = Object.entries(settings) as Array<
 		[keyof SecHeaders, string | null]
 	>;
-
-	entries.forEach(([configKey, headerValue]) => {
+	for (const [configKey, headerValue] of entries) {
 		if (headerValue === null) {
 			return;
 		}
 
 		if (keyIsHeader(configKey)) {
-			const key = HEADER_NAMES[configKey];
-
-			appendHeader(event.nativeEvent, key, headerValue);
+			attacher(HEADER_NAMES[configKey], headerValue);
 		}
-	});
-
-	const csp = chooseCSP();
-
-	if (csp) {
-		appendHeader(
-			event.nativeEvent,
-			csp.cspBlock || !csp.cspReportOnly
-				? "Content-Security-Policy"
-				: "Content-Security-Policy-Report-Only",
-			generateCSP(csp.value, nonce),
-		);
 	}
-};
+}
+
+// SolidStart FetchEvent is H3Event["context"]
+export const secureRequest =
+	(options?: Partial<SecHeaders>) => (event: FetchEvent) => {
+		const settings = options
+			? deepFallbackMerge<SecHeaders>(options, DEFAULT_HEADERS)
+			: DEFAULT_HEADERS;
+		const addHeader = h3Attacher(event.nativeEvent);
+		const csp = chooseCSP(settings);
+
+		const nonce = crypto.randomBytes(16).toString("base64");
+		event.locals.nonce = nonce;
+
+		attachSecHeaders(settings, addHeader);
+
+		if (csp) {
+			addHeader(
+				csp.cspBlock || !csp.cspReportOnly
+					? "Content-Security-Policy"
+					: "Content-Security-Policy-Report-Only",
+				generateCSP(csp.value, nonce),
+			);
+		}
+	};
