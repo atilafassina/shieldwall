@@ -10,8 +10,58 @@ pnpm add shieldwall
 
 ## Usage
 
-> [!NOTE]  
-> coming soon
+This package aims to support every framework runtime powered by [h3](https://h3.unjs.io), but at thsi moment only [SolidStart](https://start.solidjs.com) has first-class adapters.
+
+### SolidStart
+
+The exports are out-of-the-box middleware handlers, if you need help creating middlewares in SolidStart, [check the docs](https://docs.solidjs.com/solid-start/advanced/middleware)
+
+```ts
+import { createMiddleware } from "@solidjs/start/middleware";
+import { csrfProtection, secureRequest } from "shieldwall/start";
+
+export default createMiddleware({
+	onRequest: [csrfProtection, secureRequest()],
+});
+```
+
+The CSP must add `nonce` on every request and append to script and link tags.
+
+```diff
+   import { createHandler, StartServer } from "@solidjs/start/server";
+
+   export default createHandler(
+     () => (
+       <StartServer
+         document={({ assets, children, scripts }) => (
+           <html lang="en">
+             <head>
+             <meta charset="utf-8" />
+             <meta
+               name="viewport"
+               content="width=device-width, initial-scale=1"
+             />
+             <link rel="icon" href="/favicon.ico" />
+             {assets}
+           </head>
+           <body class="overflow-x-hidden bg-gradient-to-bl from-sky-950
+        to-neutral-900">
+             <div
+               id="app"
+               class="bg-blur-purple min-h-screen grid-cols-[auto,1fr,au
+       to]"
+             >
+               {children}
+             </div>
+             {scripts}
+           </body>
+         </html>
+       )}
+     />
+   ),
+-
++  (event) => ({ nonce: `nonce-${event.locals.nonce}` })
+```
 
 ## Contributors
 

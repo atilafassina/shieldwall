@@ -12,6 +12,12 @@
 		"email": "atila@fassina.eu"
 	},
 	"type": "module",
+	"exports": {
+		"./start": {
+			"import": "./dist/start/index.js",
+			"types": "./dist/start/index.d.ts"
+		}
+	},
 	"main": "./dist/index.js",
 	"files": [
 		"dist/",
@@ -68,6 +74,10 @@
 	},
 	"peerDependencies": {
 		"h3": "^1.13.0"
+	},
+	"optionalDependencies": {
+		"@solidjs/start": "^1.0.9",
+		"vinxi": "^0.4.3"
 	},
 	"publishConfig": {
 		"provenance": true
