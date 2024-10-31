@@ -1,3 +1,9 @@
+# [0.2.0](https://github.com/atilafassina/shieldwall/compare/0.1.3...0.2.0) (2024-10-31)
+
+### Features
+
+- h3 support ([547adb8](https://github.com/atilafassina/shieldwall/commit/547adb8da83a347202342c210fd035674eb47e89))
+
 ## [0.1.3](https://github.com/atilafassina/shieldwall/compare/0.1.2...0.1.3) (2024-10-05)
 
 ### Bug Fixes
