@@ -87,13 +87,13 @@ export const chooseCSP = (
 			reportOnly: csp.cspReportOnly || false,
 		});
 
-		return { [headerName]: generateCSP(csp.value, nonce) };
+		return { name: headerName, value: generateCSP(csp.value, nonce) };
 	} else {
 		const { cspBlock, cspReportOnly, value } = prod as CSP;
 		const headerName = cspMode({
 			block: cspBlock || false,
 			reportOnly: cspReportOnly,
 		});
-		return { [headerName]: generateCSP(value, nonce) };
+		return { name: headerName, value: generateCSP(value, nonce) };
 	}
 };

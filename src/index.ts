@@ -11,6 +11,7 @@ export const secureRequest =
 		attachSecHeaders(secHeaders, addHeader);
 
 		if (csp) {
+			console.log("CSP::", csp.name, csp.value);
 			addHeader(csp.name, csp.value);
 		}
 
