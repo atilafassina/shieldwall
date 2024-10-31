@@ -1,5 +1,5 @@
-import { HEADER_NAMES } from "./defaults.js";
-import { type HeaderNames } from "./types.js";
+import { HEADER_NAMES } from "../defaults.js";
+import { type HeaderNames } from "../types.js";
 
 export function deepFallbackMerge<TargetShape = Record<string, unknown>>(
 	target: Partial<TargetShape>,

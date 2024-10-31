@@ -67,8 +67,7 @@
 		"vitest": "^2.1.2"
 	},
 	"peerDependencies": {
-		"@solidjs/start": "^1.0.8",
-		"vinxi": "^0.4.3"
+		"h3": "^1.13.0"
 	},
 	"publishConfig": {
 		"provenance": true
