@@ -1,3 +1,10 @@
+## [0.2.3](https://github.com/atilafassina/shieldwall/compare/0.2.0...0.2.3) (2024-10-31)
+
+### Bug Fixes
+
+- generate csp ([2acf7bb](https://github.com/atilafassina/shieldwall/commit/2acf7bb9de018f4858b6d4ccc4380f4bbad1836d))
+- generate csp ([f271932](https://github.com/atilafassina/shieldwall/commit/f271932ae81c2e5a5b4f58e894be64fb61f8c246))
+
 # [0.2.0](https://github.com/atilafassina/shieldwall/compare/0.1.3...0.2.0) (2024-10-31)
 
 ### Features
