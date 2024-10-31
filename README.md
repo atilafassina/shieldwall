@@ -30,7 +30,7 @@ The CSP must add `nonce` on every request and append to script and link tags.
 ```diff
    import { createHandler, StartServer } from "@solidjs/start/server";
 
-   export default createHandler(
+  export default createHandler(
      () => (
        <StartServer
          document={({ assets, children, scripts }) => (
@@ -61,6 +61,7 @@ The CSP must add `nonce` on every request and append to script and link tags.
    ),
 -
 +  (event) => ({ nonce: `nonce-${event.locals.nonce}` })
+  )
 ```
 
 ## Contributors
