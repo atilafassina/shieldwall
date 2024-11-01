@@ -14,7 +14,8 @@ This package aims to support every framework runtime powered by [h3](https://h3.
 
 ### SolidStart
 
-The exports are out-of-the-box middleware handlers. If you need help creating middlewares in SolidStart you can [check the docs](https://docs.solidjs.com/solid-start/advanced/middleware)
+The exports are out-of-the-box middleware handlers.
+If you need help creating middlewares in SolidStart you can [check the docs](https://docs.solidjs.com/solid-start/advanced/middleware).
 
 ```ts
 import { createMiddleware } from "@solidjs/start/middleware";
