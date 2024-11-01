@@ -111,7 +111,8 @@ This middleware will append multiple HTTP Headers to **every request** hitting t
 * CSP headers have different defaults if in production or development and these are documented below.
 </small>
 
-The default values for each header can be found in [defaults.ts](https://github.com/atilafassina/shieldwall/blob/main/src/lib/defaults.ts#L39-L47) file. They are strict by default and can be relaxed via configuration
+The default values for each header can be found in [defaults.ts](https://github.com/atilafassina/shieldwall/blob/main/src/lib/defaults.ts#L39-L47) file.
+They are strict by default and can be relaxed via configuration
 
 > [!TIP]
 > For an extra layer of security, once the Strict-Transport-Security (HSTS) is set, you can register your domain on the [HSTS Preload List](https://hstspreload.org/).
