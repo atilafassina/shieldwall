@@ -28,6 +28,15 @@
       "contributions": [
         "tool"
       ]
+    },
+    {
+      "login": "danieljcafonso",
+      "name": "Daniel Afonso",
+      "avatar_url": "https://avatars.githubusercontent.com/u/35337607?v=4",
+      "profile": "https://danieljcafonso.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
