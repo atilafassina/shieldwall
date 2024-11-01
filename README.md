@@ -65,6 +65,67 @@ The CSP must add `nonce` on every request and append to script and link tags.
   )
 ```
 
+## Middlewares
+
+This package exports 2 middlewares to be used as drop-in: `csrfProtection` and `secureRequest`.
+
+### CSRF Protection
+
+In a CSRF (Cross-Site Request Forgery) attack, a malicious actor tricks a user's browser into making unwanted requests to another site where the user is authenticated.
+By exploiting the fact that browsers automatically include cookies (including session cookies) with each request to a domain.
+This allows the attacker to trigger a mutation in the origin server (e.g.: change of password, email, etc).
+
+There are different strategies to prevent this form of attack, this middleware checks the HTTP headers to ensure the domain issuing the request is the same receiving it for `POST`.
+
+If the request is to be blocked, the server will respond with a [`403`](https://http.cat/403) status.
+
+```ts
+export const csrfProtection: RequestMiddleware = (event) => {
+	if (csrfBlocker(event) === "block") {
+		// eslint-disable-next-line n/no-unsupported-features/node-builtins
+		event.nativeEvent.respondWith(new Response(null, { status: 403 }));
+		return;
+	}
+};
+```
+
+### Security Headers
+
+This middleware will append multiple HTTP Headers to **every request** hitting the server.
+
+| Header Name                           | Description                                                                                                                                             |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Strict-Transport-Security             | Enforces secure (HTTPS) connections to the server.                                                                                                      |
+| X-Frame-Options                       | Prevents [clickjacking](https://owasp.org/www-community/attacks/Clickjacking) by controlling whether a browser can display a page in a frame or iframe. |
+| X-Content-Type-Options                | Prevents `MIME` type sniffing by instructing browsers to follow the declared content type.                                                              |
+| Referrer-Policy                       | Controls how much referrer information is included with requests.                                                                                       |
+| Permissions-Policy                    | Manages permissions for APIs and features in the browser.                                                                                               |
+| X-XSS-Protection                      | Fitlers cross-site scripting (XSS) in the browser.                                                                                                      |
+| Cross-Origin-Opener-Policy            | Isolates browsing contexts to prevent cross-origin attacks.                                                                                             |
+| Cross-Origin-Resource-Policy          | Restricts which origins can load resources.                                                                                                             |
+| Access-Control-Allow-Origin           | Specifies which origins can access the resources via cross-origin requests.                                                                             |
+| Content-Security-Policy\*             | Defines policies to prevent a wide range of attacks, including XSS and data injection.                                                                  |
+| Content-Security-Policy-Report-Only\* | Same as Content-Security-Policy, but does not block, only reports to a passed URI.                                                                      |
+
+<small>
+* CSP headers have different defaults if in production or development and these are documented below.
+</small>
+
+The default values for each header can be found in [defaults.ts](https://github.com/atilafassina/shieldwall/blob/main/src/lib/defaults.ts#L39-L47) file. They are strict by default and can be relaxed via configuration
+
+> [!TIP]
+> For an extra layer of security, once the Strict-Transport-Security (HSTS) is set, you can register your domain on the [HSTS Preload List](https://hstspreload.org/).
+
+## Content-Security-Policy
+
+Given the complex nature of [Content-Security-Policy (CSP)](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html) header, there is a lot of nuance on how to properly configure it and no _one-size-fits-all_ solution.
+
+For Shieldwall we have opted for the most strict options as default and it's possible to relax them through configuration as needed.
+Please note that for Hot-Module Replacement to work it's required that we relax them during development to allow for inline-styles and inline-scripts.
+So there are different settings for **development** and **production**.
+
+Additionally, CSP allows for [`nonce`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) hashes to fully secure your application against [XSS](https://owasp.org/www-community/attacks/xss/), it will work out-of-the-box for the header and you must add it on your scripts and stylesheets as [shown on usage](#usage).
+
 ## Contributors
 
 <!-- spellchecker: disable -->
