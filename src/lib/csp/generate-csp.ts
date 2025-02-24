@@ -1,5 +1,4 @@
 import { getCSP, nonce, CSPDirectives } from "csp-header";
-import { type CSP } from "../types.js";
 
 type CSPValues = Partial<CSPDirectives>;
 const cspNonceDirectives = [
@@ -13,7 +12,7 @@ const cspNonceDirectives = [
 	"default-src",
 ] as const;
 
-export const addNonceToDirectives = (
+const addNonceToDirectives = (
 	csp: CSPValues,
 	nonceString: string | undefined,
 ): CSPValues => {

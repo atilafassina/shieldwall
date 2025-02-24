@@ -1,5 +1,5 @@
-import { describe, test, expect, vi } from "vitest";
-import { UNSAFE_INLINE, SELF, NONE, UNSAFE_EVAL } from "csp-header";
+import { describe, test, expect } from "vitest";
+// import { UNSAFE_INLINE, SELF, NONE, UNSAFE_EVAL } from "csp-header";
 import { buildCSP } from "../../start/csp.js";
 
 const expect_production_basic = "default-src 'self'; object-src 'none';";

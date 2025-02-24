@@ -16,7 +16,8 @@
 		"./start": {
 			"import": "./dist/start/index.js",
 			"types": "./dist/start/index.d.ts"
-		}
+		},
+		"./csp": {}
 	},
 	"main": "./dist/index.js",
 	"files": [
@@ -73,10 +74,10 @@
 		"vitest": "^2.1.2"
 	},
 	"peerDependencies": {
+		"@solidjs/start": "^1.0.9",
 		"h3": "^1.13.0"
 	},
 	"optionalDependencies": {
-		"@solidjs/start": "^1.0.9",
 		"vinxi": "^0.4.3"
 	},
 	"publishConfig": {

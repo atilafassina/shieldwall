@@ -1,4 +1,4 @@
-import { describe, test, expect, vi } from "vitest";
+import { describe, test, expect } from "vitest";
 import { deepMerge } from "./deep-merge.js";
 
 describe("it works", () => {
