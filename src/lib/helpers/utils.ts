@@ -25,3 +25,6 @@ export function deepFallbackMerge<TargetShape = Record<string, unknown>>(
 export const keyIsHeader = (key: string): key is keyof HeaderNames => {
 	return Object.prototype.hasOwnProperty.call(HEADER_NAMES, key);
 };
+
+export const isProd = process.env.NODE_ENV === "production";
+export const isDev = !isProd;

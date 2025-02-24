@@ -5,14 +5,8 @@ import { type SecHeaders } from "../lib/types.js";
 
 export const secureRequest =
 	(options?: Partial<SecHeaders>) => (event: FetchEvent) => {
-		const { csp, nonce, ...secHeaders } = handleSecurityHeaders(options);
-
+		const secHeaders = handleSecurityHeaders(options);
 		const addHeader = h3Attacher(event.nativeEvent);
+
 		attachSecHeaders(secHeaders, addHeader);
-
-		if (csp) {
-			addHeader(csp.name, csp.value);
-		}
-
-		event.locals.nonce = nonce;
 	};
