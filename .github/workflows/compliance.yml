@@ -10,7 +10,7 @@ jobs:
             allcontributors[bot]
             renovate
             renovate[bot]
-          ignore-team-members: false
+          ignore-team-members: true
 
 name: Compliance
 
