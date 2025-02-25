@@ -1,11 +1,11 @@
 import crypto from "node:crypto";
 import { type FetchEvent } from "@solidjs/start/server";
-import { h3Attacher } from "../lib/helpers/h3.js";
-import { generateCSP } from "../lib/csp/generate-csp.js";
-import { isDev } from "../lib/helpers/utils.js";
-import { CSP } from "../lib/types.js";
-import { CSPTemplate, templates } from "../lib/csp/csp-templates.js";
-import { deepMerge } from "../lib/helpers/deep-merge.js";
+import { h3Attacher } from "../../lib/helpers/h3.js";
+import { generateCSP } from "../../lib/csp/generate-csp.js";
+import { isDev } from "../../lib/helpers/utils.js";
+import { CSP } from "../../lib/types.js";
+import { CSPTemplate, templates } from "../../lib/csp/csp-templates.js";
+import { deepMerge } from "../../lib/helpers/deep-merge.js";
 
 interface CSPConfigParams {
 	extend?: CSPTemplate;

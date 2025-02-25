@@ -14,12 +14,18 @@
 	"type": "module",
 	"exports": {
 		"./start": {
-			"import": "./dist/start/index.js",
-			"types": "./dist/start/index.d.ts"
+			"import": "./dist/start/secure-headers/index.js",
+			"types": "./dist/start/secure-headers/index.d.ts"
 		},
-		"./csp": {}
+		"./start/csrf": {
+			"import": "./dist/start/csrf-protection.js",
+			"types": "./dist/start/csrf-protection.d.ts"
+		},
+		"./start/csp": {
+			"import": "./dist/start/csp/index.js",
+			"types": "./dist/start/csp/index.d.ts"
+		}
 	},
-	"main": "./dist/index.js",
 	"files": [
 		"dist/",
 		"package.json",
