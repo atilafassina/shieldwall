@@ -24,6 +24,7 @@ import { SELF } from "shieldwall/start/csp";
 
 export default createMiddleware({
 	onRequest: [
+		csrf,
 		securityHeaders(),
 		csp({
 			extend: "production_basic",
@@ -35,7 +36,6 @@ export default createMiddleware({
 				},
 			},
 		}),
-		csrf,
 	],
 });
 ```
@@ -135,7 +135,7 @@ They are strict by default and can be relaxed via configuration
 
 Given the complex nature of [Content-Security-Policy (CSP)](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html) header, there is a lot of nuance on how to properly configure it and no _one-size-fits-all_ solution.
 
-> [WARNING]
+> [!WARNING]
 > Please note that for Hot-Module Replacement to work it's required that we relax them during development to allow for inline-styles and inline-scripts.
 > So there are different settings for **development** and **production**.
 > We have extensible templates for `dev_hmr_friendly` and `production_basic` to be used in each scenario respectively.
