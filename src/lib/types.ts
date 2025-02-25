@@ -1,16 +1,9 @@
 import { type CSPDirectives } from "csp-header";
 
-export interface CSPHeaderConfig {
-	dev?: CSP;
-	prod: CSP;
-	reportUri?: string;
-}
-
 export type CSP = {
-	withNonce: boolean;
-	value: Partial<CSPDirectives>;
-	cspBlock?: boolean;
-	cspReportOnly: boolean;
+	withNonce?: boolean;
+	value?: Partial<CSPDirectives>;
+	reportOnly?: boolean;
 };
 
 export type SecHeaders = {
@@ -53,10 +46,6 @@ export type SecHeaders = {
 		| "unsafe-none"
 		| null;
 	accessControlAllowOrigin: string | null;
-	csp?: {
-		prod: CSP;
-		dev?: CSP;
-	};
 };
 
 export interface HeaderNames {
