@@ -19,10 +19,24 @@ If you need help creating middlewares in SolidStart you can [check the docs](htt
 
 ```ts
 import { createMiddleware } from "@solidjs/start/middleware";
-import { csrfProtection, secureRequest } from "shieldwall/start";
+import { securityHeaders, csp, csrf } from "shieldwall/start";
+import { SELF } from "shieldwall/start/csp";
 
 export default createMiddleware({
-	onRequest: [csrfProtection, secureRequest()],
+	onRequest: [
+		securityHeaders(),
+		csp({
+			extend: "production_basic",
+			config: {
+				withNonce: true,
+				reportOnly: true,
+				value: {
+					"frame-src": [SELF],
+				},
+			},
+		}),
+		csrf,
+	],
 });
 ```
 
@@ -121,11 +135,33 @@ They are strict by default and can be relaxed via configuration
 
 Given the complex nature of [Content-Security-Policy (CSP)](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html) header, there is a lot of nuance on how to properly configure it and no _one-size-fits-all_ solution.
 
-For Shieldwall we have opted for the most strict options as default and it's possible to relax them through configuration as needed.
-Please note that for Hot-Module Replacement to work it's required that we relax them during development to allow for inline-styles and inline-scripts.
-So there are different settings for **development** and **production**.
+> [WARNING]
+> Please note that for Hot-Module Replacement to work it's required that we relax them during development to allow for inline-styles and inline-scripts.
+> So there are different settings for **development** and **production**. We have extensible templates for `dev_hmr_friendly` and `production_basic` to be used in each scenario respectively.
 
 Additionally, CSP allows for [`nonce`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) hashes to fully secure your application against [XSS](https://owasp.org/www-community/attacks/xss/), it will work out-of-the-box for the header and you must add it on your scripts and stylesheets as [shown on usage](#usage).
+
+### Implementation Tip
+
+It's possible to have 2 CSPs at the same time, so rolling out changes can be done gradually.
+
+```ts
+import { createMiddleware } from "@solidjs/start/middleware";
+import { csp } from "shieldwall/start";
+
+export default createMiddleware({
+	onRequest: [
+		csp({
+			extend: "production_basic",
+			config: {
+				withNonce: true,
+				reportOnly: true, // warns, doesn't block
+			},
+		}),
+		csp({ extend: "dev_hmr_friendly", config: { withNonce: false } }), // blocks
+	],
+});
+```
 
 ## Contributors
 
