@@ -137,7 +137,8 @@ Given the complex nature of [Content-Security-Policy (CSP)](https://cheatsheetse
 
 > [WARNING]
 > Please note that for Hot-Module Replacement to work it's required that we relax them during development to allow for inline-styles and inline-scripts.
-> So there are different settings for **development** and **production**. We have extensible templates for `dev_hmr_friendly` and `production_basic` to be used in each scenario respectively.
+> So there are different settings for **development** and **production**.
+> We have extensible templates for `dev_hmr_friendly` and `production_basic` to be used in each scenario respectively.
 
 Additionally, CSP allows for [`nonce`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) hashes to fully secure your application against [XSS](https://owasp.org/www-community/attacks/xss/), it will work out-of-the-box for the header and you must add it on your scripts and stylesheets as [shown on usage](#usage).
 
