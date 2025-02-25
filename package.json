@@ -1,6 +1,6 @@
 {
 	"name": "shieldwall",
-	"version": "1.0.0-alpha.0",
+	"version": "0.3.0",
 	"description": "Security for your Fullstack App 🛡️",
 	"repository": {
 		"type": "git",
