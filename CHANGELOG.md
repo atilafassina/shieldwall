@@ -1,3 +1,15 @@
+# [0.4.0](https://github.com/atilafassina/shieldwall/compare/0.2.3...0.4.0) (2025-02-25)
+
+### Bug Fixes
+
+- Improve DX and customization ([#9](https://github.com/atilafassina/shieldwall/issues/9)) ([cf4b5eb](https://github.com/atilafassina/shieldwall/commit/cf4b5eb8e4e127caf5eb650514e1d16bc5c38c8e))
+- sync release version to npm ([312198c](https://github.com/atilafassina/shieldwall/commit/312198ca8c0e1eb91b9ee397d418259139f5800c))
+- typo and commas ([#3](https://github.com/atilafassina/shieldwall/issues/3)) ([bd74df9](https://github.com/atilafassina/shieldwall/commit/bd74df9b06325305d35003c2f70b2846dfc73c76))
+
+### Features
+
+- SolidStart support ([0b651a7](https://github.com/atilafassina/shieldwall/commit/0b651a76a8b7df7a4fac1ef037b1ce1281c363fe))
+
 ## [0.2.3](https://github.com/atilafassina/shieldwall/compare/0.2.0...0.2.3) (2024-10-31)
 
 ### Bug Fixes
