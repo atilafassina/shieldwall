@@ -48,6 +48,7 @@ export default tseslint.config(
 			"@typescript-eslint/no-unsafe-argument": "off",
 			"@typescript-eslint/no-unnecessary-type-assertion": "off",
 			"no-extra-boolean-cast": "off",
+			"@typescript-eslint/no-explicit-any": "off",
 
 			// These on-by-default rules don't work well for this repo and we like them off.
 			"no-constant-condition": "off",

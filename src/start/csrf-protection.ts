@@ -1,6 +1,5 @@
-import { type RequestMiddleware } from "@solidjs/start/middleware";
 import { FetchEvent } from "@solidjs/start/server";
-import { getHeader } from "vinxi/http";
+import { getHeader } from "h3";
 
 function getHost(url: string) {
 	try {
@@ -55,7 +54,7 @@ function csrfBlocker(event: FetchEvent) {
 	}
 }
 
-export const csrfProtection: RequestMiddleware = (event) => {
+export const csrfProtection = (event: any) => {
 	if (csrfBlocker(event) === "block") {
 		// eslint-disable-next-line n/no-unsupported-features/node-builtins
 		event.nativeEvent.respondWith(new Response(null, { status: 403 }));

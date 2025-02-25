@@ -1,5 +1,3 @@
-export { attachCSP } from "./build.js";
-
 export {
 	ALLOW,
 	ALLOW_DOWNLOADS_WITHOUT_USER_ACTIVATION,

@@ -1,5 +1,4 @@
 import crypto from "node:crypto";
-import { type FetchEvent } from "@solidjs/start/server";
 import { h3Attacher } from "../../lib/helpers/h3.js";
 import { generateCSP } from "../../lib/csp/generate-csp.js";
 import { isDev } from "../../lib/helpers/utils.js";
@@ -10,10 +9,6 @@ import { deepMerge } from "../../lib/helpers/deep-merge.js";
 interface CSPConfigParams {
 	extend?: CSPTemplate;
 	config: CSP;
-}
-
-interface AttachParams extends CSPConfigParams {
-	requestEvent: FetchEvent;
 }
 
 export function buildCSP({ config, extend }: CSPConfigParams) {
@@ -41,14 +36,26 @@ export function buildCSP({ config, extend }: CSPConfigParams) {
 	}
 }
 
-export function attachCSP({ requestEvent, ...cspParams }: AttachParams) {
-	const addHeader = h3Attacher(requestEvent.nativeEvent);
-	const { name, value, nonce } = buildCSP(cspParams);
+export const attachCSP = (cspParams: CSPConfigParams) => {
+	return (requestEvent: any) => {
+		if (!requestEvent.nativeEvent) {
+			throw new Error(
+				"CSP must be used as a middleware. Please create an issue in Shieldwall",
+			);
+		}
+		const addHeader = h3Attacher(requestEvent.nativeEvent);
+		const { name, value, nonce } = buildCSP(cspParams);
 
-	requestEvent.locals.nonce = nonce;
+		if (!requestEvent.locals) {
+			throw new Error(
+				"locals missing on native event. Please create an issue in Shieldwall",
+			);
+		}
+		requestEvent.locals.nonce = nonce;
 
-	addHeader(name, value);
-	if (isDev) {
-		console.info("CSPAttached:: ", name, value);
-	}
-}
+		addHeader(name, value);
+		if (isDev) {
+			console.info("CSPAttached:: ", name, value);
+		}
+	};
+};

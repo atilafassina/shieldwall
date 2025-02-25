@@ -1,4 +1,3 @@
-import { type FetchEvent } from "@solidjs/start/server";
 import { h3Attacher } from "../../lib/helpers/h3.js";
 import {
 	attachSecHeaders,
@@ -7,7 +6,7 @@ import {
 import { type SecHeaders } from "../../lib/types.js";
 
 export const secureRequest =
-	(options?: Partial<SecHeaders>) => (event: FetchEvent) => {
+	(options?: Partial<SecHeaders>) => (event: any) => {
 		const secHeaders = handleSecurityHeaders(options);
 		const addHeader = h3Attacher(event.nativeEvent);
 
